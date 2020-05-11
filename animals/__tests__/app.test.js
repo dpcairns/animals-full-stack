@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const fakeRequest = require('supertest');
-const app = require('../lib/app.js');
+const app = require('../server.js');
 
 describe('app routes', () => {
   beforeAll(() => {
@@ -18,39 +18,32 @@ describe('app routes', () => {
 
   test('returns animals', async() => {
 
-    const expectation =  [
+    const expectation = [
       {
-        id: 1,
-        name: 'thriller',
-        artist: 'mj',
-        length: 3,
-        user_id: 1,
-        is_single: false
+        'id': 1,
+        'name': 'bessie',
+        'coolfactor': 3,
+        'owner_id': 1
       },
       {
-        id: 2,
-        name: 'country roads',
-        artist: 'john denver',
-        length: 2,
-        user_id: 1,
-        is_single: true
+        'id': 2,
+        'name': 'jumpy',
+        'coolfactor': 4,
+        'owner_id': 1
       },
       {
-        id: 3,
-        name: 'DROP TABLE animals;',
-        artist: 'tom petty',
-        length: 3,
-        user_id: 1,
-        is_single: true
+        'id': 3,
+        'name': 'spot',
+        'coolfactor': 10,
+        'owner_id': 1
       }
     ];
-    
 
     const data = await fakeRequest(app)
       .get('/animals')
       .expect('Content-Type', /json/)
       .expect(200);
-      
+
     expect(data.body).toEqual(expectation);
   });
 });

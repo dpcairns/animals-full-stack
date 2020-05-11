@@ -15,15 +15,18 @@ async function run() {
                     id SERIAL PRIMARY KEY,
                     email VARCHAR(256) NOT NULL,
                     hash VARCHAR(512) NOT NULL
-                );
+                );   
+                CREATE TABLE species (
+                    id SERIAL PRIMARY KEY,
+                    species VARCHAR(256) NOT NULL
+                );        
                 CREATE TABLE animals (
                     id SERIAL PRIMARY KEY NOT NULL,
                     name VARCHAR(512) NOT NULL,
-                    artist VARCHAR(512) NOT NULL,
-                    length INTEGER NOT NULL,
-                    user_id INTEGER NOT NULL REFERENCES users(id),
-                    is_single BOOLEAN NOT NULL
-                );
+                    cool_factor INTEGER NOT NULL,
+                    species_id INTEGER NOT NULL REFERENCES species(id),
+                    owner_id INTEGER NOT NULL REFERENCES users(id)
+            );
         `);
 
     console.log('create tables complete');

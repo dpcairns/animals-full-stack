@@ -2,6 +2,7 @@ const client = require('../lib/client');
 // import our seed data:
 const animals = require('./animals.js');
 const usersData = require('./users.js');
+const speciesData = require('./species.js');
 
 run();
 
@@ -9,6 +10,17 @@ async function run() {
 
   try {
     await client.connect();
+
+    await Promise.all(
+      speciesData.map(species => {
+        return client.query(`
+                      INSERT INTO species (species)
+                      VALUES ($1)
+                      RETURNING *;
+                  `,
+        [species.species]);
+      })
+    );
 
     const users = await Promise.all(
       usersData.map(user => {
@@ -26,10 +38,10 @@ async function run() {
     await Promise.all(
       animals.map(animal => {
         return client.query(`
-                    INSERT INTO animals (name, artist, length, user_id, is_single)
-                    VALUES ($1, $2, $3, $4 , $5);
+                    INSERT INTO animals (name, cool_factor, species_id, owner_id)
+                    VALUES ($1, $2, $3, $4);
                 `,
-        [animal.name, animal.artist, animal.length, user.id, animal.is_single]);
+        [animal.name, animal.cool_factor, animal.species_id, user.id]);
       })
     );
     
