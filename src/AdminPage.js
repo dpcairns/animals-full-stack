@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import request from 'superagent';
-import { addSong } from './api-calls.js';
+import { addAnimal } from './api-calls.js';
 
 export default class AdminPage extends Component {
     state = {
@@ -13,9 +13,9 @@ export default class AdminPage extends Component {
     handleSubmit = async (e) => {
         e.preventDefault();
 
-        const newSong = await addSong(this.state)
+        const newAnimal = await addAnimal(this.state)
 
-        this.setState({ sucess: newSong })
+        this.setState({ sucess: newAnimal })
     }
 
     handleGeneralChange = (e) => {
@@ -31,9 +31,9 @@ export default class AdminPage extends Component {
         return (
             <div className="form-container">
                 <form onSubmit={this.handleSubmit}>
-                    <h3>New Song</h3>
+                    <h3>New Animal</h3>
                     <label>
-                        Song Name
+                        Animal Name
                         <input onChange={this.handleGeneralChange} value={name} name="name" />
                     </label>
                     <label>

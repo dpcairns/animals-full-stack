@@ -1,10 +1,10 @@
-import { getSong } from './api-calls.js';
+import { getAnimal } from './api-calls.js';
 
 describe('api calls', () => {
-    test('getSong', async () => {
-        const song = await getSong(2);
+    test('getAnimal', async () => {
+        const animal = await getAnimal(2);
 
-        expect(song).toEqual({
+        expect(animal).toEqual({
             id: 2,
             name: 'country roads',
             artist: 'john denver',
@@ -14,10 +14,10 @@ describe('api calls', () => {
           });
     });
 
-    test('addSong', async () => {
-        const song = await getSong(2);
+    test('addAnimal', async () => {
+        const animal = await getAnimal(2);
 
-        expect(song).toEqual({
+        expect(animal).toEqual({
             id: 2,
             name: 'country roads',
             artist: 'john denver',
@@ -28,10 +28,10 @@ describe('api calls', () => {
     });
 
 
-    test('getSong', async () => {
-        const song = await getSong(2);
+    test('getAnimal', async () => {
+        const animal = await getAnimal(2);
 
-        expect(song).toEqual({
+        expect(animal).toEqual({
             id: 2,
             name: 'country roads',
             artist: 'john denver',

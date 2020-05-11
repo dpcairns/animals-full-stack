@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { getSong } from './api-calls.js';
+import { getAnimal } from './api-calls.js';
 
 export default class DetailPage extends Component {
-    state = { song: null }
+    state = { animal: null }
     componentDidMount = async () => {
-        const fetchedData = await getSong(this.props.match.params.id)
+        const fetchedData = await getAnimal(this.props.match.params.id)
 
 
-        this.setState({ song: fetchedData })
+        this.setState({ animal: fetchedData })
     }
     render() {
         return (
@@ -15,8 +15,8 @@ export default class DetailPage extends Component {
                 detail
                 <div>
                     { 
-                    this.state.song 
-                    ? JSON.stringify(this.state.song)
+                    this.state.animal 
+                    ? JSON.stringify(this.state.animal)
                     : 'LOADING LOADING LOADING LOADING'}
                 </div>
             </div>

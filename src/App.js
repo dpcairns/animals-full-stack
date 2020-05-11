@@ -21,7 +21,7 @@ export default class App extends Component {
                             render={(routerProps) => <ListPage {...routerProps} />} 
                         />
                         <Route 
-                            path="/song/:id" 
+                            path="/animal/:id" 
                             render={(routerProps) => <DetailPage {...routerProps} />} 
                         />
                         <Route 
